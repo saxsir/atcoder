@@ -4,12 +4,13 @@ import (
 	"fmt"
 )
 
-const mod int64 = 1e9 + 7
+const MOD int64 = 1e9 + 7
 
 func main() {
 	// 標準入力からの読み取り
 	var N int
 	fmt.Scanf("%d", &N)
+
 	a := make([]int, N)
 	b := make([]int, N)
 	// iは1~ = 島の番号が1~
@@ -24,7 +25,7 @@ func main() {
 	fmt.Println(ans & MOD)
 }
 
-func solve(N int, a, b []int) int {
+func solve(N int, a, b []int) int64 {
 	// 島が5個ある
 	// 橋は 2-5, 1-5, 2-4, 3-2 でつながっている
 	// 両端の島が黒で、、というのは1つの橋を対象にということ（経由した先とかではない）よね...
@@ -49,18 +50,6 @@ func solve(N int, a, b []int) int {
 // f(x) = g(x) + g(y1) * g(y2) * ... * g(yk)
 // k=
 
-func dfs(x, p int) {
+type struct Node {
 }
 
-func f(x, p int) {
-}
-
-func g(x, p int) {
-	if dpF[x] > 0 {
-		return dpF[x]
-	}
-
-	w := g(x, p)
-	b := 1
-
-}
