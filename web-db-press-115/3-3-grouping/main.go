@@ -82,7 +82,7 @@ func Read(r io.Reader) (int, [][]int) {
 }
 
 // io util
-// refs. https://or3.hatenablog.com/entry/2018/01/08/193055
+// もうちょっと育てて別パッケージにしよう
 type Scanner struct {
 	*bufio.Scanner
 }
