@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func main() {
@@ -21,7 +24,6 @@ func Solve(r io.Reader, w io.Writer) {
 	var A [][]int
 
 	N, A = Read(r)
-
 	fmt.Println(N, A)
 
 	//3つ以下のグループに最適に分割する組み合わせで幸福度が最大になるものを計算する
@@ -58,11 +60,45 @@ func solve(N int, A [][]int) int {
 }
 
 func Read(r io.Reader) (int, [][]int) {
-	var N int
-	fmt.Fscanf(r, "%d", &N)
+	sc := NewScanner(r)
+	N := sc.nextInt()
 
-	return N, [][]int{
-		{1, 2, 3},
-		{2, 3, 4},
+	// Aの初期化
+	A := make([][]int, N-1)
+	for i := 0; i < N-1; i++ {
+		A[i] = make([]int, N-1)
 	}
+
+	// 読み込み
+	for i := 0; i < N-1; i++ {
+		a := strings.Split(sc.next(), " ")
+		for j := 0; j < N-1-i; j++ {
+			aa, _ := strconv.Atoi(a[j])
+			A[i][j] = aa
+		}
+	}
+
+	return N, A
+}
+
+// io util
+// refs. https://or3.hatenablog.com/entry/2018/01/08/193055
+type Scanner struct {
+	*bufio.Scanner
+}
+
+func NewScanner(r io.Reader) *Scanner {
+	return &Scanner{
+		bufio.NewScanner(r),
+	}
+}
+
+func (sc *Scanner) next() string {
+	sc.Scan()
+	return sc.Text()
+}
+
+func (sc *Scanner) nextInt() int {
+	i, _ := strconv.Atoi(sc.next())
+	return i
 }

@@ -7,6 +7,15 @@ import (
 	"testing"
 )
 
+var (
+	in1 string = `6
+10 10 -10 -10 -10
+10 -10 -10 -10
+-10 -10 -10
+10 -10
+-10`
+)
+
 func TestSolve_問題文のサンプルが通ること(t *testing.T) {
 	tests := []struct {
 		in   string
@@ -46,12 +55,7 @@ func Test入力を読み込めている(t *testing.T) {
 		in   string
 		want W
 	}{
-		{`6
-10 10 -10 -10 -10
-10 -10 -10 -10
--10 -10 -10
-10 -10
--10`, W{
+		{in1, W{
 			N: 6, A: [][]int{
 				{10, 10, -10, -10, -10},
 				{10, -10, -10, -10, 0},
